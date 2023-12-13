@@ -14,7 +14,7 @@ class LoafRender {
 
         this.sceneTree = new THREE.Group();
 
-        renderContainer?.appendChild( this.renderer.domElement );
+        renderContainer.appendChild( this.renderer.domElement );
 
         
         renderContainer.addEventListener('resize', () => {
