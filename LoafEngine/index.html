@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="LoafEngine/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loaf Engine</title>
+  </head>
+  <body>
+    <div class="editor-container">
+      <div class="top-pane">
+        <nav>
+          <ul class="menu-bar">
+            <li>
+              File
+              <ul class="dropdown file">
+                <li>Save to computer</li>
+                <li>Open file</li>
+              </ul>
+            </li>
+            <li>
+              View
+              <ul class="dropdown view">
+                <li>Scene hierarchy panel</li>
+                <li>Inspection panel</li>
+              </ul>
+            </li>
+            <li>
+              Add
+              <ul class="dropdown add" id="add-dropdown">
+                <li>Scene hierarchy panel</li>
+                <li>Inspection panel</li>
+              </ul>
+            </li>
+            <li>Assets</li>
+            <li>About</li>
+          </ul>
+        </nav>
+      </div>
+      <div class="lower-panes">
+        <div class="left-pane">
+          Scene tree
+        </div>
+        <div id="render-container" class="render-container">
+          
+        </div>
+        <div class="right-pane">
+          Inspect object
+        </div>
+      </div>
+    </div>
+    <script type="module" src="LoafEngine/src/main.js"></script>
+  </body>
+</html>
