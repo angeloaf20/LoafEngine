@@ -71,6 +71,12 @@ body {
   
 .left-pane, .right-pane {
     width: 20%;
-    height: 100%;
+    height: 100vh;
     background-color: #555;
+}
+
+.draggable {
+    height: inherit;
+    width: 5%;
+    cursor: col-resize;
 }
