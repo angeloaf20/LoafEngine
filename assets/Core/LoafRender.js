@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 // todo: import cube so as to load it, update it if anything, and draw it
 
 class LoafRender {
