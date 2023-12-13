@@ -1,4 +1,4 @@
-import * as THREE from '../../libs/three/build/three.js';
+import * as THREE from '../../libs/three/build/three.module.js';
 // todo: import cube so as to load it, update it if anything, and draw it
 
 class LoafRender {
