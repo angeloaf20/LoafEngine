@@ -1,4 +1,4 @@
-import { LoafRender } from './Core/LoafRender';
+import { LoafRender } from './Core/LoafRender.js';
 
 function main() {
   const loaf = new LoafRender();
