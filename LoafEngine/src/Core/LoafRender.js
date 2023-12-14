@@ -3,27 +3,18 @@ import * as THREE from 'three';
 
 class LoafRender {
     constructor() {
-        const renderContainer = document.getElementById("render-container");
-        this.renderer = new THREE.WebGLRenderer();
+        this.renderContainer = document.getElementById("render-container");
+        this.renderer = new THREE.WebGLRenderer( { antialias: true } );
         this.scene_ = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(75, renderContainer.clientWidth / renderContainer.clientHeight, 0.1, 2000);
+        this.camera = new THREE.PerspectiveCamera( 75, this.renderContainer.clientWidth / this.renderContainer.clientHeight, 0.1, 2000 );
         this.camera.position.z = 10;
 
 
-        this.renderer.setSize( renderContainer.clientWidth, renderContainer.clientHeight );
+        this.renderer.setSize( this.renderContainer.clientWidth, this.renderContainer.clientHeight );
 
         this.sceneTree = new THREE.Group();
 
-        renderContainer.appendChild( this.renderer.domElement );
-
-        
-        renderContainer.addEventListener('resize', () => {
-            var width = renderContainer.clientWidth;
-            var height = renderContainer.clientHeight;
-            this.renderer.setSize(width, height);
-            this.camera.aspect = width / height;
-            this.camera.updateProjectionMatrix();
-        });
+        this.renderContainer.appendChild( this.renderer.domElement );
     }
 
     load() {
@@ -50,6 +41,14 @@ class LoafRender {
 
     draw() {
         this.renderer.render(this.scene_, this.camera);
+
+        this.renderContainer.addEventListener( 'resize' , () => {
+            var width = this.renderContainer.clientWidth;
+            var height = this.renderContainer.clientHeight;
+            this.renderer.setSize(width, height);
+            this.camera.aspect = width / height;
+            this.camera.updateProjectionMatrix();
+        });
     }
 }
 

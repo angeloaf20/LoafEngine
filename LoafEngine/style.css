@@ -75,6 +75,11 @@ body {
     background-color: #555;
 }
 
+.scene-name {
+    font-size: 20px;
+    padding-top: 5px;
+}
+
 .draggable {
     height: inherit;
     width: 5%;
