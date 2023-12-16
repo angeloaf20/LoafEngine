@@ -31,7 +31,8 @@ function main() {
 
   // Add cube to toolbar
   const addDropdown = document.getElementById("add-dropdown");
-  const toolbarAdd = new ToolbarAdd(addDropdown, "Box");
+  const boxAdd = new ToolbarAdd(addDropdown, "Box", loaf.scene_);
+  const sphereAdd = new ToolbarAdd(addDropdown, "Sphere", loaf.scene_);
 }
 
 main();

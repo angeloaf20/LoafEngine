@@ -1,12 +1,15 @@
 import { AddMesh } from './AddMesh.js';
 
 class ToolbarAdd {
-    constructor( parentElement, mesh ) {
+    constructor( parentElement, mesh, scene ) {
         this.parent = parentElement;
         this.meshItem = this.createElement( mesh );
+        this.scene = scene;
         this.appendToParent( this.parent, this.meshItem );
         
-        this.meshItem.addEventListener('click', this.itemClicked );
+        this.meshItem.addEventListener('click', () => {
+            this.itemClicked( this.meshItem, this.scene );
+        } );
     }
 
     appendToParent( parentElement, mesh ) {
@@ -19,8 +22,8 @@ class ToolbarAdd {
         return meshItem;
     }
 
-    itemClicked( item, mesh ) {
-        const addMesh = new AddMesh('Box');
+    itemClicked( mesh, scene ) {
+        const addMesh = new AddMesh( mesh.innerText, scene);
     }
 }
 
