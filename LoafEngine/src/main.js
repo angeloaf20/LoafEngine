@@ -1,5 +1,4 @@
-import { DoubleSide } from 'three';
-import { LoafRender } from './Core/LoafRender.js';
+import { LoafRender } from './core/LoafRender.js';
 import { ToolbarAdd } from './ui/Toolbar.Add.js';
 
 function main() {
