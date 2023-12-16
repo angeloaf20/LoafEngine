@@ -1,42 +1,41 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 // todo: import cube so as to load it, update it if anything, and draw it
 
 class LoafRender {
     constructor() {
+        console.log(THREE.REVISION);
         this.renderContainer = document.getElementById("render-container");
         this.renderer = new THREE.WebGLRenderer( { antialias: true } );
         this.scene_ = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera( 75, this.renderContainer.clientWidth / this.renderContainer.clientHeight, 0.1, 2000 );
-        this.camera.position.z = 10;
+        this.camera.position.set( 5, 5, 10 );
 
+        this.sceneTree = new THREE.Group();
+
+        this.editorLight = new THREE.AmbientLight( 0x404040 );
+        this.scene_.add(this.editorLight);
 
         this.renderer.setSize( this.renderContainer.clientWidth, this.renderContainer.clientHeight );
 
-        this.sceneTree = new THREE.Group();
+        const controls = new OrbitControls( this.camera, this.renderer.domElement );
+        controls.update();
+
+        this.gridHelper = new THREE.GridHelper( 50, 50 );
+        this.scene_.add( this.gridHelper );
+
+        this.scene_.fog = new THREE.Fog( 0xD44534, 50, 200 );
 
         this.renderContainer.appendChild( this.renderer.domElement );
     }
 
     load() {
-        const materials = [
-            new THREE.MeshBasicMaterial({ color: 0xff0000 }), // Right face (red)
-            new THREE.MeshBasicMaterial({ color: 0x00ff00 }), // Left face (green)
-            new THREE.MeshBasicMaterial({ color: 0x0000ff }), // Top face (blue)
-            new THREE.MeshBasicMaterial({ color: 0xffff00 }), // Bottom face (yellow)
-            new THREE.MeshBasicMaterial({ color: 0xff00ff }), // Front face (magenta)
-            new THREE.MeshBasicMaterial({ color: 0x00ffff })  // Back face (cyan)
-        ];
-        const cube = new THREE.Mesh(
-            new THREE.BoxGeometry(5, 5, 5),
-            materials
-        );
-        this.sceneTree.add(cube);
-        this.scene_.add(this.sceneTree);
+        this.sky = this.createSky();
+        this.scene_.add(this.sky);
     }
 
     update() {
-        this.sceneTree.rotation.x += 0.01;
-        this.sceneTree.rotation.y += 0.01;
+
     }
 
     draw() {
@@ -49,6 +48,16 @@ class LoafRender {
             this.camera.aspect = width / height;
             this.camera.updateProjectionMatrix();
         });
+    }
+
+    createSky() {
+        return new THREE.Mesh(
+            new THREE.SphereGeometry(10000, 32, 32),
+            new THREE.MeshBasicMaterial({
+                color: 0xFF0000,
+                side: THREE.BackSide
+            })
+        );
     }
 }
 
