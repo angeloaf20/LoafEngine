@@ -10,15 +10,15 @@ resizeHandle.addEventListener('mousedown', (e) => {
 	initialWidth = resizableContainer.offsetWidth;
     initialHeight = resizableContainer.offsetHeight;
 	document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', () => {
-            isResizing = false;
-            document.removeEventListener('mousemove', handleMouseMove);
-        });
-    });
+    document.addEventListener('mouseup', () => {
+        isResizing = false;
+        document.removeEventListener('mousemove', handleMouseMove);
+    } );
+} );
 
-    function handleMouseMove(e) {
-        if (isResizing) {
-            const newWidth = initialWidth + e.clientX - resizeHandle.getBoundingClientRect().right;
-            resizableContainer.style.width = `${newWidth}px`;
-        }
+function handleMouseMove(e) {
+    if (isResizing) {
+        const newWidth = initialWidth + e.clientX - resizeHandle.getBoundingClientRect().right;
+        resizableContainer.style.width = `${newWidth}px`;
     }
+}
