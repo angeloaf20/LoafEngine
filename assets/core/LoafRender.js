@@ -1,5 +1,5 @@
 import * as THREE from '../../libs/three/build/three.module.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from '../../libs/three/examples/jsm/controls/OrbitControls.js'
 // todo: import cube so as to load it, update it if anything, and draw it
 
 class LoafRender {
