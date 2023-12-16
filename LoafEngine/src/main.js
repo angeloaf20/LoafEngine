@@ -1,4 +1,6 @@
+import { DoubleSide } from 'three';
 import { LoafRender } from './Core/LoafRender.js';
+import { ToolbarAdd } from './ui/Toolbar.Add.js';
 
 function main() {
   const renderContainer = document.querySelector("#render-container");
@@ -26,6 +28,10 @@ function main() {
 
   // Start the animation loop
   animate();
+
+  // Add cube to toolbar
+  const addDropdown = document.getElementById("add-dropdown");
+  const toolbarAdd = new ToolbarAdd(addDropdown, "Box");
 }
 
 main();
