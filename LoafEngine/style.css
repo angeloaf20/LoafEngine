@@ -1,7 +1,7 @@
 body {
     overflow: hidden;
     margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    font-family: Inter;
     color: white;
     user-select: none;
     -webkit-user-select: none; /* Safari */
@@ -55,7 +55,6 @@ body {
 
 .menu-bar > li:hover .dropdown {
     display: block;
-    
 }
 
   
@@ -85,4 +84,31 @@ body {
     height: inherit;
     width: 5%;
     cursor: col-resize;
+}
+
+.scene-hierarchy-container {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.scene-hierarchy {
+    height: 10em;
+    width: 95%;
+    margin: 0;
+    background-color: #444;
+}
+
+#scene-children {
+    padding: 0;
+    margin: 0;
+}
+
+#scene-children > li {
+    list-style: none;
+    margin: 0;
+}
+
+#scene-children > li:hover {
+    background-color: #222;
 }

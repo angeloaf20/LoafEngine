@@ -1,5 +1,17 @@
 import { LoafRender } from './core/LoafRender.js';
 import { ToolbarAdd } from './ui/Toolbar.Add.js';
+import { SceneChildren } from './ui/SceneChildren.js';
+
+function addMeshes(loaf) {
+  const addDropdown = document.getElementById("add-dropdown");
+  const boxAdd = new ToolbarAdd(addDropdown, "Box", loaf.scene_);
+  const sphereAdd = new ToolbarAdd(addDropdown, "Sphere", loaf.scene_);
+}
+
+function addChildrenToSceneHierarchy(scene) {
+  const parentElement = document.getElementById("scene-children");
+  const sceneHier = new SceneChildren( scene, parentElement );
+}
 
 function main() {
   const renderContainer = document.querySelector("#render-container");
@@ -9,6 +21,7 @@ function main() {
   function animate() {
     loaf.update();
     loaf.draw();
+    
     requestAnimationFrame(animate);
   }
 
@@ -21,6 +34,8 @@ function main() {
     loaf.camera.updateProjectionMatrix();
   }
 
+  const parentElement = document.getElementById("scene-children");
+  const sceneHier = new SceneChildren( loaf.renderableItems, parentElement );
   
   // Attach handleResize to the window's resize event
   window.addEventListener('resize', handleResize);
@@ -28,10 +43,7 @@ function main() {
   // Start the animation loop
   animate();
 
-  // Add cube to toolbar
-  const addDropdown = document.getElementById("add-dropdown");
-  const boxAdd = new ToolbarAdd(addDropdown, "Box", loaf.scene_);
-  const sphereAdd = new ToolbarAdd(addDropdown, "Sphere", loaf.scene_);
+  addMeshes(loaf);
 }
 
 main();

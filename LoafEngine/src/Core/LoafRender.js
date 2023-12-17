@@ -38,6 +38,7 @@ class LoafRender {
         this.scene_ = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera( 75, this.renderContainer.clientWidth / this.renderContainer.clientHeight, 0.1, 2000 );
         this.camera.position.set( 5, 5, 10 );
+        this.camera.name = "Camera";
 
 
         this.renderer.setSize( this.renderContainer.clientWidth, this.renderContainer.clientHeight );
@@ -46,11 +47,16 @@ class LoafRender {
         controls.update();
 
         this.gridHelper = new THREE.GridHelper( 50, 50 );
+        this.gridHelper.name = "Grid helper";
         this.scene_.add( this.gridHelper );
 
         this.axesHelper = new THREE.AxesHelper( 2 );
         this.axesHelper.position.x = -5;
         this.axesHelper.position.y = 5;
+        this.axesHelper.name = "Axes helper";
+
+        this.renderableItems = new THREE.Group();
+        this.renderableItems.add(this.camera);
 
 
         this.renderContainer.appendChild( this.renderer.domElement );

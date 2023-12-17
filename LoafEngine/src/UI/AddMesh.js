@@ -4,9 +4,9 @@ class AddMesh {
     constructor( meshType, scene ) {
         this.scene = scene;
         this.mesh = meshType;
-        console.log(this.mesh);
         this.selectMesh( this.mesh );
     }
+
 
     selectMesh( meshType ) {
         switch( meshType ) {
@@ -17,6 +17,7 @@ class AddMesh {
             case ( "Sphere"):
                 this.createSphere( 5, 32, 16 , this.scene);
                 console.log("Adding sphere to scene");
+                break;
             default:
                 console.warn("not valid mesh!");
                 break;
@@ -27,7 +28,9 @@ class AddMesh {
         const boxGeo = new THREE.BoxGeometry( width, height, depth );
         const boxMat = new THREE.MeshBasicMaterial();
         const box = new THREE.Mesh( boxGeo, boxMat ); 
+        box.name = "Box";
         scene.add(box);
+        console.log(scene.children);
         return box;
     }
 
@@ -35,6 +38,7 @@ class AddMesh {
         const sphereGeo = new THREE.SphereGeometry( radius, widthSegments, heightSegments );
         const sphereMat = new THREE.MeshBasicMaterial();
         const sphere = new THREE.Mesh( sphereGeo, sphereMat );
+        sphere.name = "Sphere";
         scene.add(sphere);
         return sphere;
     }
