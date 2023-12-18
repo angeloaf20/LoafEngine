@@ -1,32 +1,42 @@
+import { EventEmitter } from '../core/EventEmitter.js';
+
 class SceneChildren {
-    constructor( renderable, parentElement) {
-        this.renderable = renderable;
-        this.parentElement = parentElement;
-        this.renderableList = this.getChildren( this.renderable );
-        this.createSceneHierarchyItems( this.renderableList, this.parentElement );
-        console.log(this.renderable.children);
+    static addItemsToHierarchy( sceneChildren, parentElement ) {
+        SceneChildren.createItems( sceneChildren.children, parentElement );
+    
+        // Listen for "objectAdded" event
+        const eventEmitter = new EventEmitter(sceneChildren, "objectAdded");
+        eventEmitter.addEventListener((data) => {
+            SceneChildren.updateHierarchy(data.objects, parentElement);
+        });
     }
 
-    createSceneHierarchyItems( renderableList, parentElement ) {
-        for(let i = 0; i < renderableList.length; i++) {
-            const item = renderableList[i];
-            const elItem = this.createElement( item );
-            this.appendToParent( parentElement, elItem );
-        }
+    static createItems( sceneChildren, parentElement ) {
+        sceneChildren.forEach(child => {
+            if (child.type !== "AxesHelper" && child.type !== "GridHelper"){
+                const item = SceneChildren.createElement( child );
+                SceneChildren.appendToParent(parentElement, item);
+            };
+        });
     }
 
-    getChildren( renderable ) {
-        return renderable.children;
+    static updateList(scene, parentElement) {
+        // Clear the existing list
+        parentElement.innerHTML = '';
+
+        // Update the list with the current scene children
+        SceneChildren.createItems(scene.children, parentElement);
     }
 
-    appendToParent( parentElement, mesh ) {
-        parentElement.appendChild( mesh );
+
+    static appendToParent( parentElement, item ) {
+        parentElement.appendChild( item );
     }
 
-    createElement( mesh ) {
-        const meshItem = document.createElement( "li" );
-        meshItem.innerText = mesh.name;
-        return meshItem;
+    static createElement( item ) {
+        const itemElement = document.createElement( "li" );
+        itemElement.innerText = item.name;
+        return itemElement;
     }
 }
 

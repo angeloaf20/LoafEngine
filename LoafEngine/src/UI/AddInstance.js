@@ -1,21 +1,23 @@
 import * as THREE from 'three';
-
-class AddMesh {
-    constructor( meshType, scene ) {
-        this.scene = scene;
-        this.mesh = meshType;
-        this.selectMesh( this.mesh );
-    }
+import { EventEmitter } from '../core/EventEmitter.js';
 
 
-    selectMesh( meshType ) {
-        switch( meshType ) {
-            case ( "Box" ):
-                this.createBox( 1, 1, 1, this.scene );
+class AddInstance {
+    static meshTypes = {
+        Box: "Box", 
+        Cone: "Cone",
+        Cylinder: "Cylinder",
+        Sphere: "Sphere"
+    };
+
+    static selectInstance( type, scene ) {
+        switch( type ) {
+            case AddInstance.meshTypes.Box:
+                AddInstance.createBox( 1, 1, 1, scene );
                 console.log("Adding box to scene");
                 break;
-            case ( "Sphere"):
-                this.createSphere( 5, 32, 16 , this.scene);
+            case AddInstance.meshTypes.Sphere:
+                AddInstance.createSphere( 5, 32, 16 , scene );
                 console.log("Adding sphere to scene");
                 break;
             default:
@@ -24,17 +26,16 @@ class AddMesh {
         }
     }
 
-    createBox(width, height, depth, scene) {
+    static createBox( width, height, depth, scene ) {
         const boxGeo = new THREE.BoxGeometry( width, height, depth );
         const boxMat = new THREE.MeshBasicMaterial();
         const box = new THREE.Mesh( boxGeo, boxMat ); 
         box.name = "Box";
         scene.add(box);
-        console.log(scene.children);
         return box;
     }
 
-    createSphere( radius, widthSegments, heightSegments, scene ) {
+    static createSphere( radius, widthSegments, heightSegments, scene, objectList ) {
         const sphereGeo = new THREE.SphereGeometry( radius, widthSegments, heightSegments );
         const sphereMat = new THREE.MeshBasicMaterial();
         const sphere = new THREE.Mesh( sphereGeo, sphereMat );
@@ -44,4 +45,4 @@ class AddMesh {
     }
 }
 
-export { AddMesh };
+export { AddInstance };

@@ -1,29 +1,34 @@
-import { AddMesh } from './AddMesh.js';
+import { AddInstance } from './AddInstance.js';
+import { SceneChildren } from './SceneChildren.js';
+import { EventEmitter } from '../core/EventEmitter.js';
+
 
 class ToolbarAdd {
-    constructor( parentElement, mesh, scene ) {
-        this.parent = parentElement;
-        this.meshItem = this.createElement( mesh );
-        this.scene = scene;
-        this.appendToParent( this.parent, this.meshItem );
-        
-        this.meshItem.addEventListener('click', () => {
-            this.itemClicked( this.meshItem, this.scene );
-        } );
+    static addToToolbar( parentElement, item, scene ) {
+        const newItem = ToolbarAdd.createElement( item );
+        ToolbarAdd.appendToParent( parentElement, newItem );
+
+        newItem.addEventListener('click', () => {
+            ToolbarAdd.itemClicked( item, scene );
+        });
     }
 
-    appendToParent( parentElement, mesh ) {
-        parentElement.appendChild( mesh );
+    static itemClicked( item, scene ) {
+        const sceneChildren = document.getElementById("scene-children");
+        AddInstance.selectInstance( item, scene );
+        // Dispatch "objectAdded" event
+        const eventEmitter = new EventEmitter(sceneChildren, "objectAdded");
+        eventEmitter.fireEvent();
     }
 
-    createElement( mesh ) {
-        const meshItem = document.createElement( "li" );
-        meshItem.innerText = mesh;
-        return meshItem;
+    static appendToParent( parentElement, item ) {
+        parentElement.appendChild( item );
     }
 
-    itemClicked( mesh, scene ) {
-        const addMesh = new AddMesh( mesh.innerText, scene);
+    static createElement( item ) {
+        const itemElement = document.createElement( "li" );
+        itemElement.innerText = item;
+        return itemElement;
     }
 }
 
