@@ -9,12 +9,12 @@ resizeHandle.addEventListener('mousedown', (e) => {
     isResizing = true;
 	initialWidth = resizableContainer.offsetWidth;
     initialHeight = resizableContainer.offsetHeight;
-	document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', () => {
         isResizing = false;
         document.removeEventListener('mousemove', handleMouseMove);
-    } );
-} );
+    });
+});
 
 function handleMouseMove(e) {
     if (isResizing) {
