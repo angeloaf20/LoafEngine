@@ -1,6 +1,4 @@
-import * as THREE from 'three';
-import { EventEmitter } from '../core/EventEmitter.js';
-
+import * as THREE from '../libs/three/build/three.module.js';
 
 class AddInstance {
     static meshTypes = {

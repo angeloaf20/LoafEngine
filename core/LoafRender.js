@@ -1,5 +1,5 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import * as THREE from '../libs/three/build/three.module.js';
+import { OrbitControls } from '../libs/three/examples/jsm/controls/OrbitControls.js';
 
 class LoafRender {
     constructor() {

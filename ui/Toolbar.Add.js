@@ -1,5 +1,4 @@
 import { AddInstance } from './AddInstance.js';
-import { SceneChildren } from './SceneChildren.js';
 import { EventEmitter } from '../core/EventEmitter.js';
 
 
