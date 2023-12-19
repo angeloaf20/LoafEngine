@@ -1,14 +1,6 @@
-import { EventEmitter } from '../core/EventEmitter.js';
-
 class SceneChildren {
     static addItemsToHierarchy( sceneChildren, parentElement ) {
         SceneChildren.createItems( sceneChildren.children, parentElement );
-    
-        // Listen for "objectAdded" event
-        const eventEmitter = new EventEmitter(sceneChildren, "objectAdded");
-        eventEmitter.addEventListener((data) => {
-            SceneChildren.updateHierarchy(data.objects, parentElement);
-        });
     }
 
     static createItems( sceneChildren, parentElement ) {
