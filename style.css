@@ -93,7 +93,7 @@ body {
 }
 
 .scene-hierarchy {
-    height: 10em;
+    height: auto;
     width: 95%;
     margin: 0;
     background-color: #444;

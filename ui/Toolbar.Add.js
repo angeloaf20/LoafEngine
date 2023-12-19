@@ -16,8 +16,8 @@ class ToolbarAdd {
         const sceneChildren = document.getElementById("scene-children");
         AddInstance.selectInstance( item, scene );
         // Dispatch "objectAdded" event
-        const eventEmitter = new EventEmitter(sceneChildren, "objectAdded");
-        eventEmitter.fireEvent();
+        //const eventEmitter = new EventEmitter(sceneChildren, "objectAdded");
+        //eventEmitter.fireEvent();
     }
 
     static appendToParent( parentElement, item ) {

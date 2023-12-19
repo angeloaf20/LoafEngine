@@ -45,9 +45,7 @@ function main() {
   addMeshes(loaf);
   addChildrenToHierarchy( loaf.scene_, sceneChildrenEl );
   
-  sceneChildrenEl.addEventListener("objectAdded", e => {
-    SceneChildren.updateList( loaf.scene_, sceneChildrenEl );
-  });
+  
 
   console.log(loaf.scene_);
 }
