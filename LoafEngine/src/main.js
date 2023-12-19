@@ -37,19 +37,19 @@ function main() {
   // Attach handleResize to the window's resize event
   window.addEventListener('resize', handleResize);
 
-  
-
   // Start the animation loop
   animate();
 
   addMeshes(loaf);
   addChildrenToHierarchy( loaf.scene_, sceneChildrenEl );
   
-  sceneChildrenEl.addEventListener("objectAdded", e => {
+  sceneChildrenEl.addEventListener("objectAdded", () => {
     SceneChildren.updateList( loaf.scene_, sceneChildrenEl );
   });
 
-  console.log(loaf.scene_);
+  SceneChildren.getCurrentSelection(sceneChildrenEl);
+  
+  console.log(sceneChildrenEl.children.length);
 }
 
 main();

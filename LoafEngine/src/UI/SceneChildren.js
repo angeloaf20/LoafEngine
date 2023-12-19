@@ -20,6 +20,17 @@ class SceneChildren {
         SceneChildren.createItems(scene.children, parentElement);
     }
 
+    static getCurrentSelection(parentElement) {
+        parentElement.addEventListener("click", function(e) {
+            const child = e.target;
+            child.style = "background-color: #222";
+        });
+    }
+
+    static childSelected(item) {
+        console.log(item.name + " selected");
+        item.style.backgroundColor = "#222";
+    }
 
     static appendToParent( parentElement, item ) {
         parentElement.appendChild( item );

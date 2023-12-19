@@ -10,14 +10,14 @@ class AddInstance {
         Sphere: "Sphere"
     };
 
-    static selectInstance( type, scene ) {
+    static selectInstance( type, scene, elem ) {
         switch( type ) {
             case AddInstance.meshTypes.Box:
-                AddInstance.createBox( 1, 1, 1, scene );
+                AddInstance.createBox( scene, elem );
                 console.log("Adding box to scene");
                 break;
             case AddInstance.meshTypes.Sphere:
-                AddInstance.createSphere( 5, 32, 16 , scene );
+                AddInstance.createSphere( scene, elem );
                 console.log("Adding sphere to scene");
                 break;
             default:
@@ -26,21 +26,27 @@ class AddInstance {
         }
     }
 
-    static createBox( width, height, depth, scene ) {
-        const boxGeo = new THREE.BoxGeometry( width, height, depth );
+    static createBox( scene, elem ) {
+        const boxGeo = new THREE.BoxGeometry( 1, 1, 1 );
         const boxMat = new THREE.MeshBasicMaterial();
         const box = new THREE.Mesh( boxGeo, boxMat ); 
         box.name = "Box";
         scene.add(box);
+        console.dir(box);
+        const emit = new EventEmitter(elem, "newObj");
+        emit.fireEvent({ detail: box.uuid });
         return box;
     }
 
-    static createSphere( radius, widthSegments, heightSegments, scene, objectList ) {
-        const sphereGeo = new THREE.SphereGeometry( radius, widthSegments, heightSegments );
+    static createSphere( scene, elem ) {
+        const sphereGeo = new THREE.SphereGeometry( 4, 16, 8 );
         const sphereMat = new THREE.MeshBasicMaterial();
         const sphere = new THREE.Mesh( sphereGeo, sphereMat );
         sphere.name = "Sphere";
         scene.add(sphere);
+        console.dir(sphere);
+        const emit = new EventEmitter(elem, "newObj");
+        emit.fireEvent({ detail: sphere.uuid });
         return sphere;
     }
 }

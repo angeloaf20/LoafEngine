@@ -64,7 +64,7 @@ body {
 }
   
 .render-container {
-    width: 61vw;
+    width: 80%;
     height: 100vh;
 
 }
@@ -109,6 +109,6 @@ body {
     margin: 0;
 }
 
-#scene-children > li:hover {
+#scene-children > li:hover, #scene-children > li:active {
     background-color: #222;
 }
